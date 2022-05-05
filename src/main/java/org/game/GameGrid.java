@@ -212,7 +212,7 @@ public class GameGrid {
     public void run() {
         generateNewCell();
         generateNewCell();
-        while(!endOfGame) {
+        while(!endOfGame && !controller.isClosed) {
             logic();
         }
         System.out.printf("Game finished! Your score: %d", score);

@@ -28,6 +28,9 @@ public class InputController extends GLFWKeyCallback {
                 case GLFW.GLFW_KEY_DOWN:
                     controller.setDir(Direction.DOWN);
                     break;
+                case GLFW.GLFW_KEY_ESCAPE:
+                    controller.close();
+                    break;
             }
         }
     }

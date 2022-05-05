@@ -19,13 +19,9 @@ public class Game {
     GameGrid grid;
     Controller controller;
 
-    private static int gridSize = 4;
+    private static final int gridSize = 4;
     private final int windowSize = 1000;
-    private int tileSize = windowSize / gridSize;
-
-
-
-
+    private final int tileSize = windowSize / gridSize;
 
     Game(GameGrid grid, Controller controller) {
         this.grid = grid;
@@ -114,7 +110,7 @@ public class Game {
 
         // Run the rendering loop until the user has attempted to close
         // the window or has pressed the ESCAPE key.
-        while ( !glfwWindowShouldClose(window) ) {
+        while ( !glfwWindowShouldClose(window) && !controller.isClosed) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 
             drawGrid(grid);
@@ -159,7 +155,6 @@ public class Game {
 
     private void drawImage(int x, int y, int n) {
         BufferedImage im = setTexture(n);
-
         int id = TextureLoader.loadTexture(im);
         glBindTexture(GL_TEXTURE_2D, id);
         glBegin(GL_QUADS);

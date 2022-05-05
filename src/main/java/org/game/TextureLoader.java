@@ -5,21 +5,21 @@ import org.lwjgl.opengl.GL12;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.util.Objects;
 
+import static java.lang.Math.log;
 import static org.lwjgl.opengl.GL11.*;
 
 public class TextureLoader {
     private static final int BYTES_PER_PIXEL = 4;
 
-
-
+    private int log2(int a) {
+        return (int)(log(a) / log(2));
+    }
 
     public static int loadTexture(BufferedImage im) {
-        int[] pixels = new int[im.getHeight() * im.getWidth()];
+        int[] pixels = new int[im.getWidth() * im.getHeight()];
         pixels = im.getRGB(0,0,im.getWidth(),im.getHeight(), pixels,0,im.getWidth());
 
         ByteBuffer buffer = BufferUtils.createByteBuffer(im.getHeight() * im.getWidth() * BYTES_PER_PIXEL);
@@ -35,7 +35,7 @@ public class TextureLoader {
         buffer.flip();
 
         int textureID = glGenTextures();
-        glBindTexture(GL_TEXTURE_2D, textureID); //Bind texture ID
+        glBindTexture(GL_TEXTURE_2D, textureID);
 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL12.GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL12.GL_CLAMP_TO_EDGE);
