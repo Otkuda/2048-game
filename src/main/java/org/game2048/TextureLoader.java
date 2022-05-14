@@ -1,4 +1,4 @@
-package org.game;
+package org.game2048;
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL12;

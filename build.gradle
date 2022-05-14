@@ -6,8 +6,8 @@ plugins {
 project.ext.lwjglVersion = "3.3.1"
 project.ext.lwjglNatives = "natives-windows"
 
-group 'org.game'
-version '1.0-SNAPSHOT'
+group 'org.game2048'
+version '1.2'
 
 repositories {
     mavenCentral()
@@ -44,7 +44,17 @@ dependencies {
 
 
 application {
-    mainClassName('org.game.Game')
+    mainClassName('org.game2048.Game')
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "Game"
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 

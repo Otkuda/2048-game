@@ -1,4 +1,4 @@
-package org.game;
+package org.game2048;
 
 import org.lwjgl.*;
 import org.lwjgl.glfw.*;
@@ -32,7 +32,6 @@ public class Game {
     private long window;
 
     public void run() {
-        System.out.println("Hello LWJGL " + Version.getVersion() + "!");
 
         init();
         loop();
@@ -199,6 +198,7 @@ public class Game {
         t.start();
         game.run();
         t.stop();
+        System.out.printf("Game finished! Your score: %d", grid.getScore());
     }
 
 }

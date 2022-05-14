@@ -1,5 +1,5 @@
-import org.game.Direction;
-import org.game.GameGrid;
+import org.game2048.Direction;
+import org.game2048.GameGrid;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

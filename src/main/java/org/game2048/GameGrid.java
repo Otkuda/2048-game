@@ -1,4 +1,4 @@
-package org.game;
+package org.game2048;
 
 
 import java.util.Arrays;
@@ -18,6 +18,17 @@ public class GameGrid {
     public GameGrid(int x, Controller controller) {
         grid = new int[x][x];
         this.controller = controller;
+    }
+
+    public GameGrid (GameGrid grid) {
+        int[][] newGrid = new int[4][4];
+        for(int i = 0; i < grid.grid.length; i++) {
+            newGrid[i] = grid.grid[i].clone();
+        }
+        this.grid = newGrid;
+        this.controller = grid.controller;
+        this.endOfGame = false;
+        this.score = grid.getScore();
     }
 
     public int getTile(int y, int x) {
@@ -48,6 +59,10 @@ public class GameGrid {
         for(int i = 0; i < 4; i++) {
             grid[i][n] = value[i];
         }
+    }
+
+    public int getScore() {
+        return score;
     }
 
     public void generateNewCell() {
@@ -210,11 +225,14 @@ public class GameGrid {
     }
 
     public void run() {
+        Player pl = new Player(this, controller);
         generateNewCell();
         generateNewCell();
         while(!endOfGame && !controller.isClosed) {
-            logic();
+            if (!controller.player) logic();
+            else pl.start();
         }
+        controller.close();
         System.out.printf("Game finished! Your score: %d", score);
     }
 }
