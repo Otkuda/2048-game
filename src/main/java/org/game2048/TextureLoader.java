@@ -52,7 +52,7 @@ public class TextureLoader {
     public static BufferedImage loadImage(String loc)
     {
         try {
-            return ImageIO.read(Game.class.getResource(loc));
+            return ImageIO.read(GraphicsDisplay.class.getResource(loc));
         } catch (IOException e) {
             e.printStackTrace();
         }

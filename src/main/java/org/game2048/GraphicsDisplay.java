@@ -1,6 +1,5 @@
 package org.game2048;
 
-import org.lwjgl.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.*;
@@ -14,7 +13,7 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryStack.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
-public class Game {
+public class GraphicsDisplay {
 
     GameGrid grid;
     Controller controller;
@@ -23,7 +22,7 @@ public class Game {
     private final int windowSize = 1000;
     private final int tileSize = windowSize / gridSize;
 
-    Game(GameGrid grid, Controller controller) {
+    GraphicsDisplay(GameGrid grid, Controller controller) {
         this.grid = grid;
         this.controller = controller;
     }
@@ -193,10 +192,10 @@ public class Game {
     public static void main(String[] args) {
         Controller controller = new Controller();
         GameGrid grid = new GameGrid(gridSize, controller);
-        Game game = new Game(grid, controller);
+        GraphicsDisplay graphicsDisplay = new GraphicsDisplay(grid, controller);
         Thread t = new Thread(grid::run);
         t.start();
-        game.run();
+        graphicsDisplay.run();
         t.stop();
         System.out.printf("Game finished! Your score: %d", grid.getScore());
     }

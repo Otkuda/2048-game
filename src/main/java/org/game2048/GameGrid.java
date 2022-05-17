@@ -10,6 +10,7 @@ public class GameGrid {
     Controller controller;
     public boolean endOfGame = false;
     private int score;
+    private final Direction[] dirArr = new Direction[] {Direction.LEFT, Direction.RIGHT, Direction.UP, Direction.DOWN};
 
     public GameGrid(int x) {
         grid = new int[x][x];
@@ -205,11 +206,19 @@ public class GameGrid {
         Direction dir = controller.getDir();
         if (dir != Direction.NONE) {
             if (move(dir)) generateNewCell();
-            else if (!move(dir) && !isThere0()) endOfGame = true;
+            ifLost();
         }
         isThere2048();
     }
 
+    private void ifLost() {
+        for(Direction dir : dirArr) {
+            GameGrid newGrid = new GameGrid(this);
+            newGrid.move(dir);
+            if (!this.equals(newGrid)) return;
+        }
+        endOfGame = true;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -233,7 +242,7 @@ public class GameGrid {
             else pl.start();
         }
         controller.close();
-        System.out.printf("Game finished! Your score: %d", score);
+        System.out.printf("Game finished! Your score: %d \n", score);
     }
 }
 
