@@ -192,26 +192,6 @@ public class GameGrid {
         }
     }
 
-    private boolean isThere0() {
-        for (int[] ints : grid) {
-            for (int anInt : ints) {
-                if (anInt == 0) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private void logic() {
-//        Direction dir = controller.getDir();
-//        if (dir != Direction.NONE) {
-//            if (move(dir)) generateNewCell();
-//            ifLost();
-//        }
-//        isThere2048();
-    }
-
     public void ifLost() {
         for(Direction dir : dirArr) {
             GameGrid newGrid = new GameGrid(this);
@@ -234,15 +214,5 @@ public class GameGrid {
         return Arrays.deepToString(this.grid);
     }
 
-//    public void run() {
-//        Player pl = new Player(this, controller);
-//        generateNewCell();
-//        generateNewCell();
-//        while(!endOfGame && !controller.isClosed) {
-//            if (!controller.player) logic();
-//            else pl.start();
-//        }
-//        controller.close();
-//    }
 }
 
