@@ -1,5 +1,7 @@
-package org.game2048;
+package org.game2048.model;
 
+
+import org.game2048.controller.Controller;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -7,7 +9,6 @@ import java.util.Random;
 public class GameGrid {
 
     private final int[][] grid;
-    Controller controller;
     public boolean endOfGame = false;
     private int score;
     private final Direction[] dirArr = new Direction[] {Direction.LEFT, Direction.RIGHT, Direction.UP, Direction.DOWN};
@@ -18,7 +19,6 @@ public class GameGrid {
 
     public GameGrid(int x, Controller controller) {
         grid = new int[x][x];
-        this.controller = controller;
     }
 
     public GameGrid (GameGrid grid) {
@@ -27,7 +27,6 @@ public class GameGrid {
             newGrid[i] = grid.grid[i].clone();
         }
         this.grid = newGrid;
-        this.controller = grid.controller;
         this.endOfGame = false;
         this.score = grid.getScore();
     }
@@ -65,6 +64,8 @@ public class GameGrid {
     public int getScore() {
         return score;
     }
+
+    public int[][] getGrid() {return grid;}
 
     public void generateNewCell() {
         int value = ((int)(Math.random() * 100) <= 20) ? 4 : 2;
@@ -180,7 +181,7 @@ public class GameGrid {
         return res;
     }
 
-    private void isThere2048() {
+    public void isThere2048() {
         for (int[] ints : grid) {
             for (int anInt : ints) {
                 if (anInt == 2048) {
@@ -203,15 +204,15 @@ public class GameGrid {
     }
 
     private void logic() {
-        Direction dir = controller.getDir();
-        if (dir != Direction.NONE) {
-            if (move(dir)) generateNewCell();
-            ifLost();
-        }
-        isThere2048();
+//        Direction dir = controller.getDir();
+//        if (dir != Direction.NONE) {
+//            if (move(dir)) generateNewCell();
+//            ifLost();
+//        }
+//        isThere2048();
     }
 
-    private void ifLost() {
+    public void ifLost() {
         for(Direction dir : dirArr) {
             GameGrid newGrid = new GameGrid(this);
             newGrid.move(dir);
@@ -233,16 +234,15 @@ public class GameGrid {
         return Arrays.deepToString(this.grid);
     }
 
-    public void run() {
-        Player pl = new Player(this, controller);
-        generateNewCell();
-        generateNewCell();
-        while(!endOfGame && !controller.isClosed) {
-            if (!controller.player) logic();
-            else pl.start();
-        }
-        controller.close();
-        System.out.printf("Game finished! Your score: %d \n", score);
-    }
+//    public void run() {
+//        Player pl = new Player(this, controller);
+//        generateNewCell();
+//        generateNewCell();
+//        while(!endOfGame && !controller.isClosed) {
+//            if (!controller.player) logic();
+//            else pl.start();
+//        }
+//        controller.close();
+//    }
 }
 

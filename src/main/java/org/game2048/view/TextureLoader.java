@@ -1,5 +1,6 @@
-package org.game2048;
+package org.game2048.view;
 
+import org.game2048.view.GraphicsDisplay;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL12;
 
@@ -8,15 +9,10 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
-import static java.lang.Math.log;
 import static org.lwjgl.opengl.GL11.*;
 
 public class TextureLoader {
     private static final int BYTES_PER_PIXEL = 4;
-
-    private int log2(int a) {
-        return (int)(log(a) / log(2));
-    }
 
     public static int loadTexture(BufferedImage im) {
         int[] pixels = new int[im.getWidth() * im.getHeight()];

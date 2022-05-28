@@ -1,4 +1,6 @@
-package org.game2048;
+package org.game2048.model;
+
+import org.game2048.controller.Controller;
 
 import java.util.*;
 
@@ -51,12 +53,11 @@ public class Player {
                 ArrayList<Direction> moves = checkMoves(actualGrid);
                 for (Direction d : moves) {
                     if (actualGrid.move(d)) actualGrid.generateNewCell();
-                    Thread.sleep(2000L);
+                    Thread.sleep(2L);
                 }
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-
 }

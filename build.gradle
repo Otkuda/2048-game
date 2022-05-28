@@ -7,7 +7,7 @@ project.ext.lwjglVersion = "3.3.1"
 project.ext.lwjglNatives = "natives-windows"
 
 group 'org.game2048'
-version '1.2'
+version '1.30'
 
 repositories {
     mavenCentral()
@@ -44,12 +44,12 @@ dependencies {
 
 
 application {
-    mainClassName('org.game2048.Game')
+    mainClassName('org.game2048.Main')
 }
 
 jar {
     manifest {
-        attributes "Main-Class": "Game"
+        attributes "Main-Class": "Main"
     }
 
     from {

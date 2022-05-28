@@ -1,5 +1,8 @@
-package org.game2048;
+package org.game2048.view;
 
+import org.game2048.controller.Controller;
+import org.game2048.controller.InputController;
+import org.game2048.model.GameGrid;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.*;
@@ -22,7 +25,7 @@ public class GraphicsDisplay {
     private final int windowSize = 1000;
     private final int tileSize = windowSize / gridSize;
 
-    GraphicsDisplay(GameGrid grid, Controller controller) {
+    public GraphicsDisplay(GameGrid grid, Controller controller) {
         this.grid = grid;
         this.controller = controller;
     }
@@ -187,17 +190,6 @@ public class GraphicsDisplay {
 
     private double convertY(double cord) {
         return 1 - (tileSize * cord) / (windowSize / 2.0);
-    }
-
-    public static void main(String[] args) {
-        Controller controller = new Controller();
-        GameGrid grid = new GameGrid(gridSize, controller);
-        GraphicsDisplay graphicsDisplay = new GraphicsDisplay(grid, controller);
-        Thread t = new Thread(grid::run);
-        t.start();
-        graphicsDisplay.run();
-        t.stop();
-        System.out.printf("Game finished! Your score: %d", grid.getScore());
     }
 
 }

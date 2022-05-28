@@ -1,5 +1,7 @@
-package org.game2048;
+package org.game2048.controller;
 
+import org.game2048.controller.Controller;
+import org.game2048.model.Direction;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWKeyCallback;
 
@@ -7,7 +9,7 @@ public class InputController extends GLFWKeyCallback {
 
     Controller controller;
 
-    InputController(Controller controller) {
+    public InputController(Controller controller) {
         this.controller = controller;
     }
 
@@ -16,19 +18,19 @@ public class InputController extends GLFWKeyCallback {
         if (action == GLFW.GLFW_PRESS) {
             switch (key) {
                 case GLFW.GLFW_KEY_RIGHT:
-                    controller.setDir(Direction.RIGHT);
+                    controller.moveGrid(Direction.RIGHT);
                     controller.abilitySwitch();
                     break;
                 case GLFW.GLFW_KEY_LEFT:
-                    controller.setDir(Direction.LEFT);
+                    controller.moveGrid(Direction.LEFT);
                     controller.abilitySwitch();
                     break;
                 case GLFW.GLFW_KEY_UP:
-                    controller.setDir(Direction.UP);
+                    controller.moveGrid(Direction.UP);
                     controller.abilitySwitch();
                     break;
                 case GLFW.GLFW_KEY_DOWN:
-                    controller.setDir(Direction.DOWN);
+                    controller.moveGrid(Direction.DOWN);
                     controller.abilitySwitch();
                     break;
                 case GLFW.GLFW_KEY_ESCAPE:
