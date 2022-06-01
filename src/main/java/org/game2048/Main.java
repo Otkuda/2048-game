@@ -15,7 +15,7 @@ public class Main {
         Thread t = new Thread(Main::logic);
         t.start();
         display.run();
-        System.out.printf("Game finished! Your score: %d", grid.getScore());
+        t.stop();
     }
 
     public static void logic() {
@@ -24,8 +24,11 @@ public class Main {
         while (!grid.endOfGame && !cont.isClosed) {
             grid.isThere2048();
             grid.ifLost();
+            grid.isThere0();
         }
+        System.out.printf("Game finished! Your score: %d \n", grid.getScore());
         cont.close();
     }
+
 
 }

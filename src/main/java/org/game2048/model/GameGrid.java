@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class GameGrid {
 
-    private final int[][] grid;
+    private int[][] grid;
     public boolean endOfGame = false;
     private int score;
     private final Direction[] dirArr = new Direction[] {Direction.LEFT, Direction.RIGHT, Direction.UP, Direction.DOWN};
@@ -61,9 +61,20 @@ public class GameGrid {
         }
     }
 
+    public boolean isClear() {
+        for(int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if(grid[i][j] != 0) return false;
+            }
+        }
+        return true;
+    }
+
     public int getScore() {
         return score;
     }
+
+    public void setScore(int n) {this.score = n;}
 
     public int[][] getGrid() {return grid;}
 
@@ -199,6 +210,21 @@ public class GameGrid {
             if (!this.equals(newGrid)) return;
         }
         endOfGame = true;
+    }
+
+    public void isThere0() {
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                if(this.grid[i][j] == 0) {
+                    this.endOfGame = false;
+                    return;
+                }
+            }
+        }
+    }
+
+    public void clear() {
+        this.grid = new int[grid.length][grid.length];
     }
 
     @Override

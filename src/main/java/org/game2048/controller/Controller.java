@@ -18,6 +18,14 @@ public class Controller {
 
     }
 
+    public void restart() {
+        grid.clear();
+        grid.generateNewCell();
+        grid.generateNewCell();
+        System.out.printf("Game finished! Your score: %d \n", grid.getScore());
+        grid.setScore(0);
+    }
+
     public void close() {isClosed = true;}
 
     public void changePlayer() {player = true;}

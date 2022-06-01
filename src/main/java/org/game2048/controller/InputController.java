@@ -42,6 +42,9 @@ public class InputController extends GLFWKeyCallback {
                         controller.abilitySwitch();
                     }
                     break;
+                case GLFW.GLFW_KEY_R:
+                    controller.restart();
+                    break;
             }
         }
     }
