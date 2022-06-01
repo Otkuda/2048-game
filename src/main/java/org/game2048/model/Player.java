@@ -53,6 +53,9 @@ public class Player {
                 ArrayList<Direction> moves = checkMoves(actualGrid);
                 for (Direction d : moves) {
                     if (actualGrid.move(d)) actualGrid.generateNewCell();
+                    actualGrid.isThere2048();
+                    actualGrid.ifLost();
+                    actualGrid.isThere0();
                     Thread.sleep(2L);
                 }
             }
