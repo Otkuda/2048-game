@@ -22,7 +22,7 @@ public class GraphicsDisplay {
     Controller controller;
 
     private static final int gridSize = 4;
-    private final int windowSize = 1000;
+    private final int windowSize = 720;
     private final int tileSize = windowSize / gridSize;
 
     public GraphicsDisplay(GameGrid grid, Controller controller) {
@@ -59,10 +59,10 @@ public class GraphicsDisplay {
         // Configure GLFW
         glfwDefaultWindowHints(); // optional, the current window hints are already the default
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // the window will stay hidden after creation
-        glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE); // the window will be resizable
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE); // the window will be resizable
 
         // Create the window
-        window = glfwCreateWindow(windowSize, windowSize, "Hello World!", NULL, NULL);
+        window = glfwCreateWindow(windowSize, windowSize, "2048", NULL, NULL);
         if ( window == NULL )
             throw new RuntimeException("Failed to create the GLFW window");
 
